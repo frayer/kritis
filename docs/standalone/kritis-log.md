@@ -2,6 +2,7 @@
 
 > log from `kritis-validation-hook-*` Pod after running `./no_attestation.sh`
 
+```bash
 I1216 19:06:55.263563       1 admission.go:172] Starting admission review handler
 version: v0.2.2
 commit: bea073f2a2f299af94363dc399b7780fde8f2afc
@@ -49,3 +50,4 @@ net/http.(*conn).serve(0xc00014e000, 0x15b4f40, 0xc000374380)
 	/usr/local/go/src/net/http/server.go:1878 +0x851
 created by net/http.(*Server).Serve
 	/usr/local/go/src/net/http/server.go:2884 +0x2f4
+```
