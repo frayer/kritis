@@ -39,8 +39,6 @@ spec:
         volumeMounts:
         - mountPath: /var/tls
           name: tls
-        - name: {{ .Values.gacSecret.name }}
-          mountPath: /secret
         - name: certconfig
           mountPath: /etc/config
         - name: certificates
@@ -52,9 +50,6 @@ spec:
         - name: tls
           secret:
             secretName: {{ .Values.tlsSecretName }}
-        - name: {{ .Values.gacSecret.name }}
-          secret:
-            secretName: {{ .Values.gacSecret.name }}
         - name: certconfig
           configMap:
             name: grafeas-certs-config
