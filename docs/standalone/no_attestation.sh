@@ -36,6 +36,8 @@ else
 fi
 
 kubectl create secret generic attestor --from-file=public=gpg.pub --from-file=private=gpg.priv
+# Alternative secret creation if you specified a password when generating your keypair via `gpg`
+# kubectl create secret generic attestor --from-file=public=gpg.pub --from-file=private=gpg.priv --from-literal=passphrase=<your password>
 
 # Create AttestationAuthority CRD in the k8s cluster. It will be used to enforce
 # the GenericAttestationPolicy.
@@ -47,7 +49,7 @@ metadata:
   name: kritis-authority
   namespace: default
 spec:
-  noteReference: v1beta1/projects/standalone
+  noteReference: projects/kritis
   privateKeySecretName: attestor
   publicKeyData: $PUBLIC_KEY
 EOF
