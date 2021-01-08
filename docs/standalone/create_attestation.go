@@ -20,6 +20,7 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
+	"encoding/base64"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -139,8 +140,10 @@ func createOccRequest(note *grafeas.Note) *grafeas.CreateOccurrenceRequest {
 	}
 	log.Printf("Created attestation signature: %v", sig)
 
+	encodedSig := base64.StdEncoding.EncodeToString([]byte(sig))
+
 	pgpSignedAttestation := &attestation.PgpSignedAttestation{
-		Signature: sig,
+		Signature: encodedSig,
 		KeyId: &attestation.PgpSignedAttestation_PgpKeyId{
 			PgpKeyId: fingerprint,
 		},
